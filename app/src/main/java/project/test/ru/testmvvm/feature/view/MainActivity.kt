@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun render(viewState: SearchViewState) {
+    private fun render(viewState: SearchViewState) {
         when (viewState) {
             is SearchViewState.SearchNotStartedYet -> renderSearchNotStarted()
             is SearchViewState.LoadingState -> renderLoading()

@@ -14,8 +14,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    private val API_PATH = "https://api.github.com"
-
     @Provides
     @Singleton
     internal fun provideRetrofit(): Api {
@@ -25,6 +23,10 @@ class NetworkModule {
             .client(OkHttpClient.Builder().build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build().create(Api::class.java)
+    }
+
+    companion object {
+        private const val API_PATH = "https://api.github.com"
     }
 
 }
