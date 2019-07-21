@@ -1,6 +1,6 @@
 package project.test.ru.testmvvm.core.di.module
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

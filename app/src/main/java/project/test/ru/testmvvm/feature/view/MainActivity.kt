@@ -1,15 +1,13 @@
 package project.test.ru.testmvvm.feature.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.jakewharton.rxbinding2.widget.RxSearchView
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import project.test.ru.testmvvm.R
@@ -18,7 +16,7 @@ import project.test.ru.testmvvm.feature.domain.state.SearchViewState
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -28,17 +26,16 @@ class MainActivity : AppCompatActivity() {
     private var adapter: SearchAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         adapter = SearchAdapter(LayoutInflater.from(this))
         rv_users.adapter = adapter
-        rv_users.layoutManager = LinearLayoutManager(this)
+        rv_users.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
-        viewModel.result.observe(this, Observer { state -> render(state!!) })
+        viewModel.result.observe(this, Observer { state -> render(state) })
         searchEvent()
 
     }

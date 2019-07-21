@@ -1,7 +1,7 @@
 package project.test.ru.testmvvm.feature.view
 
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import project.test.ru.testmvvm.feature.domain.model.User
 
 
 internal class SearchAdapter(private val inflater: LayoutInflater)
-    : RecyclerView.Adapter<SearchViewHolder>() {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<SearchViewHolder>() {
     var users: List<User>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -27,7 +27,7 @@ internal class SearchAdapter(private val inflater: LayoutInflater)
     override fun getItemCount(): Int = users?.size ?: 0
 }
 
-class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class SearchViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
 
     private var user: User? = null
